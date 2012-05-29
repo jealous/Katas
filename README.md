@@ -1,0 +1,4 @@
+Katas
+=====
+
+For kata practice
