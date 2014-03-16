@@ -1,0 +1,47 @@
+*.iws
+*Db.properties
+*Db.script
+.settings
+eclipse
+stacktrace.log
+target
+/plugins
+/web-app/plugins
+/web-app/WEB-INF/classes
+*.class
+
+
+# eclipse 
+
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# CDT-specific
+.cproject
+
+
+# intelliJ
+
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Netbeans
+
+nbproject/
+nbactions.xml
+
+.DS_Store
