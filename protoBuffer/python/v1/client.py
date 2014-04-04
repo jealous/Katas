@@ -1,0 +1,1 @@
+from addressBook_pb2 import *def readFrom(filename):    f = open(filename, "rb")    book = AddressBook()    book.ParseFromString(f.read())    f.close()    print(book)readFrom("jerry.save")

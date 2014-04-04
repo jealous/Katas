@@ -1,0 +1,1 @@
+Define a message, compile with protocol buffer, sereialize and deserialize.message Person:    required string name    required int32 id    optional string email    repeated PhoneNumber phone    enum PhoneType:    MOBILE    HOME    WORK    message PhoneNumber:    required string number    optional PhoneType type    message AddressBook:    repeated Person person

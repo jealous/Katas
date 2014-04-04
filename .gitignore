@@ -43,5 +43,10 @@ local.properties
 
 nbproject/
 nbactions.xml
-
 .DS_Store
+
+# Binary
+*.pyc
+
+# customized
+*.save
