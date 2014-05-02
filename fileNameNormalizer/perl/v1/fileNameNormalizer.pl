@@ -30,7 +30,7 @@ sub println{
     sub normalize{
         my($filename) = shift;
         if ($filename =~ /(^[a-z_A-Z]+?)[-|_]?(\d+)([-|_]?)([a-cA-C]?)(r?pl)?[d-zD-Z,]?\s*\.(\w+)$/){
-            $filename = uc($1)."-".uc($2);
+            $filename = uc($1)."-".&normalizeNumber($2);
             if (length($4) > 0){
                 $filename .= uc("_".$4).".".lc($6);
             }else{
@@ -41,6 +41,19 @@ sub println{
             push @notChanged, $filename;
         }
         return $filename;
+    }
+
+    # shorten the number from 00003 to 003
+    # remove zeroes only
+    sub normalizeNumber{
+        my $number = shift;
+        $number = $number + 0;
+        if ($number < 100 and $number >= 10){
+            $number = "0".$number;
+        }elsif ($number < 10 and $number > 0){
+            $number = "00".$number;
+        }
+        return $number;
     }
     
     sub renameFolder{
@@ -73,14 +86,14 @@ sub println{
             "abs-104pl.jpg", "EKDV-152 .jpg", "mide023,.avi",
             "MILD_753.jpg", "sadr-052rpl.jpg", "ZDAD-28_ENG_01.rmvb",
             "COSQ-017_1.rmvb", "ENFD-5401 Extra.rmvb", "heyzo_lt_0203.jpg",
-            "abs-55a.avi", "abs-56_a.avi");
+            "abs-55a.avi", "abs-56_a.avi", "cosq00009pl.jpg", "cosq00019pl.jpg");
             
         my @expected = ("ABC-001.avi", "ETF-123.mp4", "001-124.avi",
             "ABEF-213.gif", "EFT-124_A.jpg", "GFE-123_B.rmvb",
             "ABS-104.jpg", "EKDV-152.jpg", "MIDE-023.avi",
             "MILD-753.jpg", "SADR-052.jpg", "ZDAD-28_ENG_01.rmvb",
-            "COSQ-017_1.rmvb", "ENFD-5401 Extra.rmvb", "HEYZO_LT-0203.jpg",
-            "ABS-55_A.avi", "ABS-56_A.avi");
+            "COSQ-017_1.rmvb", "ENFD-5401 Extra.rmvb", "HEYZO_LT-203.jpg",
+            "ABS-055_A.avi", "ABS-056_A.avi", "COSQ-009.jpg", , "COSQ-019.jpg");
             
         sub assertEqual{
             my($actual, $expected) = @_;
@@ -92,7 +105,7 @@ sub println{
         for (my $i = 0 ; $i <= $#inputs ; $i++){
             my $actual = &normalize($inputs[$i]);
             &assertEqual($actual, $expected[$i]);
-            println("$inputs[$i]  -->  $actual");
+            #println("$inputs[$i]  -->  $actual");
         }
         
         &printSummary();
@@ -108,7 +121,8 @@ sub println{
     }
 
     sub run{
-        renameFolder('E:\normal');
+        renameFolder('c:\work\a');
+        #renameFolder('e:\normal');
         printSummary();
         
     }
@@ -116,6 +130,7 @@ sub println{
     # testGetFiles();
     # testSingle();
     # testRenameFolder();
+    
     run();
 }
 
