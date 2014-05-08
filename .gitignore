@@ -50,3 +50,6 @@ nbactions.xml
 
 # customized
 *.save
+
+# xcode
+*.xcodeproj
